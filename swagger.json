@@ -1,0 +1,119 @@
+{  
+    "swagger": "2.0",
+    "info": {
+      "title": "todo-api",
+      "version": "0.1.0"
+    },
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+        "/user/{_id}/tasks": {
+            "parameters": [
+                {
+                    "name": "_id",
+                    "required": true,
+                    "in": "path",
+                    "type": "string",
+                    "description": "user id"
+                }
+
+            ],
+            "get": {
+                "operationId" : "RouteWithId",
+                "summary": "returns an array of tasks",
+                "description": "returns an array of tasks associated with the user of the id",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "request completed",
+                        "examples": {
+                            "application/json":  [{ "name": "task1" , "completed": false },{ "name": "task2" , "completed": true } ] 
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId" : "RouteWithId",
+                "summary": "creates a new task",
+                "description": "creates a new task for the user",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskname",
+                        "required": true,
+                        "in": "req",
+                        "type": "string",
+                        "description": "task name"
+                    } 
+                ],
+                "responses": {
+                    "200": {
+                        "description": "post completed",
+                        "examples": {
+                            "application/json": { "user": "_id" , "task": "task_name" , "status": "ok" }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId" : "RouteWithId",
+                "summary": "updates the state of tasks",
+                "description": "updates the state of a task associated with the task id",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "task id",
+                        "required": true,
+                        "in": "req",
+                        "type": "string",
+                        "description": "task id"
+                    } 
+                ],
+                "responses": {
+                    "200": {
+                        "description": "update completed",
+                        "examples": {
+                            "application/json":  { "status": "ok", "name": "task" , "completed": false } 
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId" : "RouteWithId",
+                "summary": "delete task",
+                "description": "deletes the task associated with the task id",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "task id",
+                        "required": true,
+                        "in": "req",
+                        "type": "string",
+                        "description": "task id"
+                    } 
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete completed",
+                        "examples": {
+                            "application/json":  { "taskName": "task" ,  "status": "ok" } 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+  }

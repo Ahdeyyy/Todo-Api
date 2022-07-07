@@ -1,0 +1,39 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "A simple to do api made with node and express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "run": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahdeyyy/Todo-Api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahdeyyy/Todo-Api/issues"
+  },
+  "homepage": "https://github.com/Ahdeyyy/Todo-Api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.3",
+    "passport": "^0.6.0",
+    "passport-google-oauth": "^2.0.0",
+    "swagger-ui-express": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
