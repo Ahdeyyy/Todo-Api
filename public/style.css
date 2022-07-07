@@ -1,0 +1,33 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+.tos__container {
+  background-color: cadetblue;
+  border-radius: 0.1em;
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto;
+  padding: auto;
+}
+.tos__container__h2--text-center {
+  text-align: center;
+}
+.tos__container__content {
+  margin-bottom: 0.9em;
+}
+.tos__container__content--text-center {
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

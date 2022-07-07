@@ -1,0 +1,38 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+.tos__container{
+    background-color: cadetblue;
+    border-radius: .1em;
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    padding: auto;
+    &__h2{
+
+        &--text-center{
+            text-align: center;
+        }
+        
+    }
+
+    &__content{
+
+        margin-bottom: .9em;
+        &--text-center{
+            text-align: center;
+        }
+        
+    }
+}
