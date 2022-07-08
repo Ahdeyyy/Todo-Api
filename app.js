@@ -69,7 +69,7 @@ app.get("/success", (req, res) => res.send(userProfile));
 app.get("/error", (req, res) => res.send("error logging in"));
 
 app.listen(port, function () {
-  console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port} \nvisit: http://localhost:${port}`);
 });
 
 exports.app = app;
