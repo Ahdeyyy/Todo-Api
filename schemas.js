@@ -28,5 +28,7 @@ let UserSchema = new mongoose.Schema({
 });
 
 let TdUser = mongoose.model('TdUser',UserSchema);
+let task = mongoose.model('task',TaskSchema);
 
 exports.TdUser = TdUser;
+exports.task = task;
