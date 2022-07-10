@@ -19,7 +19,7 @@ function createUser(id,username){
 
 };
 
-function createTask(id , taskname){
+function createTask(id , taskname, res){
     let new_task = new Task({
         name: taskname,
         completed: false
@@ -27,10 +27,11 @@ function createTask(id , taskname){
     User.findOne({id: id} , (err, result) => {
         if(err) console.error(err);
         result.tasks.push(new_task);
-
-            }).save((err,data) =>{
-                if(err) console.error(err);
-              });
+        result.save((err,data) =>{
+            if(err) console.error(err);
+            res.json(data.tasks);
+          });
+            })
 } 
 
 function getTasks(id,res){
@@ -40,6 +41,18 @@ function getTasks(id,res){
             });
 } 
 
+function updateTask(taskId,res){
+    Task.findOne({_id: taskId}, (err,result) => {
+        if(err) console.error(err);
+        result.completed = !result.completed;
+        result.save((err, result) => {
+            if(err) console.error(err);
+            res.json(result);
+        });
+    })
+}
+
 exports.createUser = createUser;
 exports.createTask = createTask;
 exports.getTasks = getTasks;
+exports.updateTask = updateTask;
