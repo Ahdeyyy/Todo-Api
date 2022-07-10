@@ -41,15 +41,30 @@ function getTasks(id,res){
             });
 } 
 
-function updateTask(taskId,res){
-    Task.findOne({_id: taskId}, (err,result) => {
+function updateTask(userid,taskId,toggle,newName,res){
+
+    User.findOne({id: userid} , (err, result) => {
         if(err) console.error(err);
-        result.completed = !result.completed;
-        result.save((err, result) => {
+
+        for(let i = 0 ; i < result.tasks.length ; i++){
+            if(result.tasks[i]._id == taskId ){
+                if(toggle){
+                    result.tasks[i].completed = !result.tasks[i].completed;
+                }
+                if(newName){
+                    result.tasks[i].name = newName;
+                }
+                result.tasks[i].save((err,result) =>{
+                    if(err) console.error(err);
+                    res.send(result);
+                })
+                break;
+            }
+        }
+        result.save((err) =>{
             if(err) console.error(err);
-            res.json(result);
         });
-    })
+            });
 }
 
 exports.createUser = createUser;
