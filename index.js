@@ -11,7 +11,6 @@ let loggedOn = isLogged();
 
 app.get("/", function (req, res) {
   loggedOn = isLogged();
-  console.log(isLogged());
   if (loggedOn) {
     res.redirect("/api-docs");
   } else {
