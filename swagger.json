@@ -1,160 +1,213 @@
-{  
-    "swagger": "2.0",
-    "info": {
-      "title": "todo-api",
-      "version": "0.1.0"
-    },
-    "consumes": [
-      "application/json"
-    ],
-    "produces": [
-      "application/json"
-    ],
-    "paths": {
-        "/user/{_id}/tasks": {
-            "parameters": [
-                {
-                    "name": "_id",
-                    "required": true,
-                    "in": "path",
-                    "type": "string",
-                    "description": "user id"
-                }
-
-            ],
-            "get": {
-                "operationId" : "RouteWithId",
-                "summary": "returns an array of tasks",
-                "description": "returns an array of tasks associated with the user of the id",
-                "produces" : [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "request completed",
-                        "examples": {
-                            "application/json":  [{ "name": "task1" , "completed": false },{ "name": "task2" , "completed": true } ] 
-                        }
-                    },
-                    "404": {
-                        "description": "request failed",
-                        "examples": {
-                            "application/json":  [{ "error": "user does not exist" } ] 
-                        }
-                    }
-
-                }
-            },
-            "post": {
-                "operationId" : "RouteWithId",
-                "summary": "creates a new task",
-                "description": "creates a new task for the user",
-                "produces" : [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "taskname",
-                        "required": true,
-                        "in": "req",
-                        "type": "string",
-                        "description": "task name"
-                    } 
-                ],
-                "responses": {
-                    "200": {
-                        "description": "post completed",
-                        "examples": {
-                            "application/json": {
-                                "name": "created this task ",
-                                "completed": false,
-                                "_id": "62cc5a6ac91a105a34858"
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "request failed",
-                        "examples": {
-                            "application/json":  [{ "error": "resource not found - user does not exist" } ] 
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "operationId" : "RouteWithId",
-                "summary": "updates the state of tasks",
-                "description": "updates the state of a task associated with the task id",
-                "produces" : [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "task id",
-                        "required": true,
-                        "in": "req",
-                        "type": "string",
-                        "description": "task id"
-                    } 
-                ],
-                "responses": {
-                    "200": {
-                        "description": "update completed",
-                        "examples": {
-                            "application/json":  { "_id" : "345323jh342j", "taskname": "example" , "completed": false } 
-                        }
-                    },
-                    "404": {
-                        "description": "request failed",
-                        "examples": {
-                            "application/json":  [{ "error": "resource not found - user does not exist" } ] 
-                        }
-                    },
-                    "434": {
-                        "description": "request failed",
-                        "examples": {
-                            "application/json":  [{ "error": "resource not found - task does not exist" } ] 
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "operationId" : "RouteWithId",
-                "summary": "delete task",
-                "description": "deletes the task associated with the task id",
-                "produces" : [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "task id",
-                        "required": true,
-                        "in": "req",
-                        "type": "string",
-                        "description": "task id"
-                    } 
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete completed",
-                        "examples": {
-                            "application/json":  { "_id" : "345323jh342j", "taskname": "example" , "completed": false }
-                        }
-                    },
-                    "404": {
-                        "description": "request failed",
-                        "examples": {
-                            "application/json":  [{ "error": "resource not found - user does not exist" } ] 
-                        }
-                    },
-                    "434": {
-                        "description": "request failed",
-                        "examples": {
-                            "application/json":  [{ "error": "resource not found - task does not exist" } ] 
-                        }
-                    }
-                }
-            }
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "todo-api",
+    "version": "0.1.0"
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/user/{_id}": {
+      "parameters": [
+        {
+          "name": "_id",
+          "required": true,
+          "in": "path",
+          "type": "string",
+          "description": "user id"
         }
-    }
+      ],
 
+      "get": {
+        "operationId": "RouteWithId",
+        "summary": "returns the user",
+        "description": "returns a user object with the associated tasks",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "request completed",
+            "examples": {
+              "application/json": {
+                "id": "4567654fcre56",
+                "username": "saulgoodman",
+                "tasks": [
+                  {
+                    "name": "task1",
+                    "completed": false,
+                    "_id": "345323jh342j45t"
+                  },
+                  { "name": "task2", "completed": true, "_id": "345323jh342j" }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "request failed",
+            "examples": {
+              "application/json": { "error": "user does not exist" }
+            }
+          }
+        }
+      }
+    },
+    "/user/{_id}/tasks": {
+      "parameters": [
+        {
+          "name": "_id",
+          "required": true,
+          "in": "path",
+          "type": "string",
+          "description": "user id"
+        }
+      ],
+      "get": {
+        "operationId": "RouteWithId",
+        "summary": "returns an array of tasks",
+        "description": "returns an array of tasks associated with the user of the id",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "request completed",
+            "examples": {
+              "application/json": [
+                {
+                  "name": "task1",
+                  "completed": false,
+                  "_id": "345323jh342j45t"
+                },
+                { "name": "task2", "completed": true, "_id": "345323jh342j" }
+              ]
+            }
+          },
+          "404": {
+            "description": "request failed",
+            "examples": {
+              "application/json": { "error": "user does not exist" }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "RouteWithId",
+        "summary": "creates a new task",
+        "description": "creates a new task for the user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "taskname",
+            "required": true,
+            "in": "req",
+            "type": "string",
+            "description": "task name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "post completed",
+            "examples": {
+              "application/json": {
+                "name": "created this task ",
+                "completed": false,
+                "_id": "62cc5a6ac91a105a34858"
+              }
+            }
+          },
+          "404": {
+            "description": "request failed",
+            "examples": {
+              "application/json": {
+                "error": "resource not found - user does not exist"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "RouteWithId",
+        "summary": "updates the state of tasks",
+        "description": "updates the state of a task associated with the task id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "task id",
+            "required": true,
+            "in": "req",
+            "type": "string",
+            "description": "task id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "update completed",
+            "examples": {
+              "application/json": {
+                "_id": "345323jh342j",
+                "taskname": "example",
+                "completed": false
+              }
+            }
+          },
+          "404": {
+            "description": "request failed",
+            "examples": {
+              "application/json": {
+                "error": "resource not found - user does not exist"
+              }
+            }
+          },
+          "434": {
+            "description": "request failed",
+            "examples": {
+              "application/json": {
+                "error": "resource not found - task does not exist"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "RouteWithId",
+        "summary": "delete task",
+        "description": "deletes the task associated with the task id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "task id",
+            "required": true,
+            "in": "req",
+            "type": "string",
+            "description": "task id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete completed",
+            "examples": {
+              "application/json": {
+                "_id": "345323jh342j",
+                "taskname": "example",
+                "completed": false
+              }
+            }
+          },
+          "404": {
+            "description": "request failed",
+            "examples": {
+              "application/json": {
+                "error": "resource not found - user does not exist"
+              }
+            }
+          },
+          "434": {
+            "description": "request failed",
+            "examples": {
+              "application/json": {
+                "error": "resource not found - task does not exist"
+              }
+            }
+          }
+        }
+      }
+    }
   }
+}

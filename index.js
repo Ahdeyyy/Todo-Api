@@ -1,14 +1,19 @@
 const app = require("./app.js").app;
-const http = ('http');
 const isLogged = require("./app.js").isLogged;
-const { createTask, getTasks, updateTask , deleteTask } = require("./task");
+const {
+  createTask,
+  getTasks,
+  updateTask,
+  deleteTask,
+  viewUser,
+} = require("./task");
 let loggedOn = isLogged();
 
 app.get("/", function (req, res) {
   loggedOn = isLogged();
   console.log(isLogged());
   if (loggedOn) {
-    res.send("Logged in");
+    res.redirect("/api-docs");
   } else {
     res.render("pages/auth");
   }
@@ -23,7 +28,11 @@ app.get("/tos", (req, res) => {
   res.sendFile(__dirname + "/views/tos.html");
 });
 
-//status =>  created , ok , deleted , updated , failed
+//returns the user
+
+app.get("/user/:id", (req, res) => {
+  viewUser(req.params.id, res);
+});
 
 //returns an array of tasks [ { }, { } , ...]
 app.get("/user/:id/tasks", (req, res) => {
@@ -58,5 +67,5 @@ app.patch("/user/:id/tasks", (req, res) => {
 //query - task id
 //responds with { taskname , status}
 app.delete("/user/:id/tasks", (req, res) => {
-      deleteTask(req.params.id, req.query.taskId , res);
+  deleteTask(req.params.id, req.query.taskId, res);
 });

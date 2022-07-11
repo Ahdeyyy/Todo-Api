@@ -7,7 +7,7 @@ const swaggerDocument = require("./swagger.json");
 const session = require("express-session");
 require("dotenv").config();
 const passport = require("passport");
-const { createUser  } =  require("./task");
+const { createUser } = require("./task");
 
 /*  Google AUTH  */
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
@@ -68,9 +68,9 @@ app.get(
   }
 );
 app.get("/success", (req, res) => {
-    createUser(userProfile.id,userProfile.displayName,res);
-    loggedOn = true;
-    // res.redirect('/');
+  createUser(userProfile.id, userProfile.displayName, res);
+  loggedOn = true;
+  res.redirect(`/user/${userProfile.id}/tasks`);
 });
 app.get("/error", (req, res) => res.send("error logging in"));
 
@@ -78,7 +78,7 @@ app.listen(port, function () {
   console.log(`Listening on port ${port} \nvisit: http://localhost:${port}`);
 });
 
-function isLogged(){
+function isLogged() {
   return loggedOn;
 }
 
