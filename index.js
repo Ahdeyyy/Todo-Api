@@ -1,6 +1,6 @@
 const app = require("./app.js").app;
 const isLogged = require("./app.js").isLogged;
-const { createTask, getTasks, updateTask } = require("./task");
+const { createTask, getTasks, updateTask , deleteTask } = require("./task");
 let loggedOn = isLogged();
 
 app.get("/", function (req, res) {
@@ -39,7 +39,7 @@ app.post("/user/:id/tasks", (req, res) => {
 
 //query - task id
 //responds with { taskname , status}
-app.put("/user/:id/tasks", (req, res) => {
+app.patch("/user/:id/tasks", (req, res) => {
   let toggle;
   let newName;
   if (req.query.toggle === "true") {
@@ -57,4 +57,6 @@ app.put("/user/:id/tasks", (req, res) => {
 
 //query - task id
 //responds with { taskname , status}
-app.delete("/user/:id/tasks", (req, res) => {});
+app.delete("/user/:id/tasks", (req, res) => {
+      deleteTask(req.params.id, req.query.taskId , res);
+});

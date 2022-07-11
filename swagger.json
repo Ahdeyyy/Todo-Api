@@ -58,12 +58,16 @@
                     "200": {
                         "description": "post completed",
                         "examples": {
-                            "application/json": { "user": "_id" , "task": "task_name" , "status": "ok" }
+                            "application/json": {
+                                "name": "created this task ",
+                                "completed": false,
+                                "_id": "62cc5a6ac91a105a34858"
+                            }
                         }
                     }
                 }
             },
-            "put": {
+            "patch": {
                 "operationId" : "RouteWithId",
                 "summary": "updates the state of tasks",
                 "description": "updates the state of a task associated with the task id",
@@ -83,7 +87,7 @@
                     "200": {
                         "description": "update completed",
                         "examples": {
-                            "application/json":  { "status": "ok", "name": "task" , "completed": false } 
+                            "application/json":  { "_id" : "345323jh342j", "taskname": "example" , "completed": false } 
                         }
                     }
                 }
@@ -108,7 +112,7 @@
                     "200": {
                         "description": "delete completed",
                         "examples": {
-                            "application/json":  { "taskName": "task" ,  "status": "ok" } 
+                            "application/json":  { "_id" : "345323jh342j", "taskname": "example" , "completed": false }
                         }
                     }
                 }

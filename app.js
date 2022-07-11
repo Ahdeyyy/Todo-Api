@@ -68,11 +68,9 @@ app.get(
   }
 );
 app.get("/success", (req, res) => {
-    createUser(userProfile.id,userProfile.displayName);
+    createUser(userProfile.id,userProfile.displayName,res);
     loggedOn = true;
-    res.redirect('/');
-  
-  // res.send(userProfile);
+    // res.redirect('/');
 });
 app.get("/error", (req, res) => res.send("error logging in"));
 
