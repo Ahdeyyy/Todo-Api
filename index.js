@@ -1,4 +1,5 @@
 const app = require("./app.js").app;
+const http = ('http');
 const isLogged = require("./app.js").isLogged;
 const { createTask, getTasks, updateTask , deleteTask } = require("./task");
 let loggedOn = isLogged();
@@ -26,8 +27,7 @@ app.get("/tos", (req, res) => {
 
 //returns an array of tasks [ { }, { } , ...]
 app.get("/user/:id/tasks", (req, res) => {
-  let userId = req.params.id;
-  getTasks(userId, res);
+  getTasks(req.params.id, res);
 });
 //query - taskname
 //responds with  { taskname , status}

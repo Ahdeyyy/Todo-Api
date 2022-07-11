@@ -35,7 +35,14 @@
                         "examples": {
                             "application/json":  [{ "name": "task1" , "completed": false },{ "name": "task2" , "completed": true } ] 
                         }
+                    },
+                    "404": {
+                        "description": "request failed",
+                        "examples": {
+                            "application/json":  [{ "error": "user does not exist" } ] 
+                        }
                     }
+
                 }
             },
             "post": {
@@ -64,6 +71,12 @@
                                 "_id": "62cc5a6ac91a105a34858"
                             }
                         }
+                    },
+                    "404": {
+                        "description": "request failed",
+                        "examples": {
+                            "application/json":  [{ "error": "resource not found - user does not exist" } ] 
+                        }
                     }
                 }
             },
@@ -89,6 +102,18 @@
                         "examples": {
                             "application/json":  { "_id" : "345323jh342j", "taskname": "example" , "completed": false } 
                         }
+                    },
+                    "404": {
+                        "description": "request failed",
+                        "examples": {
+                            "application/json":  [{ "error": "resource not found - user does not exist" } ] 
+                        }
+                    },
+                    "434": {
+                        "description": "request failed",
+                        "examples": {
+                            "application/json":  [{ "error": "resource not found - task does not exist" } ] 
+                        }
                     }
                 }
             },
@@ -113,6 +138,18 @@
                         "description": "delete completed",
                         "examples": {
                             "application/json":  { "_id" : "345323jh342j", "taskname": "example" , "completed": false }
+                        }
+                    },
+                    "404": {
+                        "description": "request failed",
+                        "examples": {
+                            "application/json":  [{ "error": "resource not found - user does not exist" } ] 
+                        }
+                    },
+                    "434": {
+                        "description": "request failed",
+                        "examples": {
+                            "application/json":  [{ "error": "resource not found - task does not exist" } ] 
                         }
                     }
                 }
